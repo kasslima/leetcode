@@ -4,8 +4,8 @@ import "fmt"
 
 func main() {
 	//fmt.Println(longestCommonPrefix([]string{"dog", "racecar", "car"}))
-	//fmt.Println(longestCommonPrefix([]string{"ab", "a"}))
-	fmt.Println(longestCommonPrefix([]string{"flower", "flow", "flight"}))
+	fmt.Println(longestCommonPrefix([]string{"abca","aba","aaab"}))
+	//fmt.Println(longestCommonPrefix([]string{"flower", "flow", "flight"}))
 }
 
 
