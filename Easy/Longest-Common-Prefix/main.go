@@ -3,31 +3,29 @@ package main
 import "fmt"
 
 func main() {
-	//fmt.Println(longestCommonPrefix([]string{"dog", "racecar", "car"}))
+	//Example
+	fmt.Println(longestCommonPrefix([]string{"dog", "racecar", "car"}))
+	fmt.Println(longestCommonPrefix([]string{"aac","acab","aa","abba","aa"}))
 	fmt.Println(longestCommonPrefix([]string{"abca","aba","aaab"}))
-	//fmt.Println(longestCommonPrefix([]string{"flower", "flow", "flight"}))
+	fmt.Println(longestCommonPrefix([]string{"flower", "flow", "flight"}))
 }
 
 
 func longestCommonPrefix(strs []string) string {
-
 	if len(strs) == 1 {
 		return strs[0]
 	}
 
-	strs = equalizarPeloMenor(strs)
+	strs = normalizeToShortest(strs)
 
 	prefix := strs[0]
-
-
 	j:= 0
 
 	var k int
-
 	temp:= ""
+	new:= ""
 
 	for i := range strs{
-
 		k = 0
 
 		for j = 0; j <= len(strs[i]); j++{
@@ -42,38 +40,40 @@ func longestCommonPrefix(strs []string) string {
 				if j == 0 {
 					return ""
 				}
-				return word[:k]
+				break
 			}
+
 			k++
-			
+
 		}
 
-		if temp != prefix[:k] {
-			temp = prefix[:k]
+		new = prefix[:k]
+
+		if temp == "" || len(new) < len(temp) {
+			temp = new
 		}
-		
 	}
 
-	return prefix[:k]
+	return temp
 
 }
 
-func equalizarPeloMenor(strs []string) []string {
+func normalizeToShortest(strs []string) []string {
 	if len(strs) == 0 {
 		return strs
 	}
 
-	menor := len(strs[0])
+	shortest := len(strs[0])
 	for _, s := range strs {
-		if len(s) < menor {
-			menor = len(s)
+		if len(s) < shortest {
+			shortest = len(s)
 		}
 	}
 
-	resultado := make([]string, len(strs))
+	result := make([]string, len(strs))
 	for i, s := range strs {
-		resultado[i] = s[:menor]
+		result[i] = s[:shortest]
 	}
 
-	return resultado
+	return result
 }
